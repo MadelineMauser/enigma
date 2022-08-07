@@ -16,6 +16,18 @@ class Enigma
     {encryption: encryption, key: key, date: date}
   end
 
+  def decrypt(message, key, date)
+    decryption = ''
+    working_index = 0
+    message.downcase.split('').each do |character|
+      current_shift = shifts(key, date)[working_index % 4]
+      char_index = @characer_set.find_index(character)
+      decryption.concat(@characer_set[(char_index - current_shift) % 27])
+      working_index += 1
+    end
+    {decryption: decryption, key: key, date: date}
+  end
+
   def shifts(key, date)
     a_key = key[0, 2]
     b_key = key[1, 2]
