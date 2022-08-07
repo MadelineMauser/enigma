@@ -14,4 +14,9 @@ describe '#encrypt' do
     expect(@enigma.encrypt('Hello world', '02715', '040895')).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
 end
+describe '#shifts' do
+  it 'can create an array of shifts' do
+    expect(@enigma.shifts('02715', '040895')).to eq([3, 27, 73, 20])
+  end
+end
 end

@@ -5,6 +5,18 @@ class Enigma
   end
 
   def encrypt(message, key, date)
+    encryption = ''
+    working_index = 0
+    message.downcase.split('').each do |character|
+      current_shift = shifts(key, date)[working_index % 4]
+      char_index = @characer_set.find_index(character)
+      encryption.concat(@characer_set[(char_index + current_shift) % 27])
+      working_index += 1
+    end
+    {encryption: encryption, key: key, date: date}
+  end
+
+  def shifts(key, date)
     a_key = key[0, 2]
     b_key = key[1, 2]
     c_key = key[2, 2]
@@ -20,16 +32,7 @@ class Enigma
     b_shift = b_key.to_i + b_offset.to_i
     c_shift = c_key.to_i + c_offset.to_i
     d_shift = d_key.to_i + d_offset.to_i
-    shifts = [a_shift, b_shift, c_shift, d_shift]
 
-    encryption = ''
-    working_index = 0
-    message.downcase.split('').each do |character|
-      current_shift = shifts[working_index % 4]
-      char_index = @characer_set.find_index(character)
-      encryption.concat(@characer_set[(char_index + current_shift) % 27])
-      working_index += 1
-    end
-    {encryption: encryption, key: key, date: date}
+    [a_shift, b_shift, c_shift, d_shift]
   end
 end
