@@ -10,10 +10,10 @@ class Enigma
     working_index = 0
     message.downcase.split('').each do |character|
       if @characer_set.any?(character)
-      current_shift = shifts(key, date)[working_index % 4]
-      char_index = @characer_set.find_index(character)
-      encryption.concat(@characer_set[(char_index + current_shift) % 27])
-      working_index += 1
+        current_shift = shifts(key, date)[working_index % 4]
+        char_index = @characer_set.find_index(character)
+        encryption.concat(@characer_set[(char_index + current_shift) % 27])
+        working_index += 1
       else
         encryption.concat(character)
       end
@@ -25,10 +25,14 @@ class Enigma
     decryption = ''
     working_index = 0
     message.downcase.split('').each do |character|
-      current_shift = shifts(key, date)[working_index % 4]
-      char_index = @characer_set.find_index(character)
-      decryption.concat(@characer_set[(char_index - current_shift) % 27])
-      working_index += 1
+      if @characer_set.any?(character)
+        current_shift = shifts(key, date)[working_index % 4]
+        char_index = @characer_set.find_index(character)
+        decryption.concat(@characer_set[(char_index - current_shift) % 27])
+        working_index += 1
+      else
+        decryption.concat(character)
+      end
     end
     {decryption: decryption, key: key, date: date}
   end

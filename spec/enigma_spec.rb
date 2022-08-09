@@ -47,6 +47,9 @@ describe '#decrypt' do
     encrypted_string = @enigma.encrypt('Hello world', '02715')[:encryption]
     expect(@enigma.decrypt(encrypted_string, '02715')).to eq({decryption: 'hello world', key: '02715', date: Date.today.strftime('%d%m%y')})
   end
+  it 'can decrypt a string with special characters' do
+    expect(@enigma.decrypt('keder ohulw!', '02715', '040895')).to eq({decryption: 'hello world!', key: '02715', date: '040895'})
+  end
 end
 describe '#random_key' do
   it 'can create a string of five random numbers' do
