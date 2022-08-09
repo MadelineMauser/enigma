@@ -1,4 +1,3 @@
-require 'pry'
 require 'date'
 require './lib/shiftable'
 require './lib/encryption'

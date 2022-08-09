@@ -2,7 +2,7 @@ class Decryption
   def initialize
     @character_set = ("a".."z").to_a << " "
   end
-  def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
+  def decrypt(message, key, date)
     decryption = ''
     working_index = 0
     message.downcase.split('').each do |character|

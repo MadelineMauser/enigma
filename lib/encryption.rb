@@ -2,7 +2,7 @@ class Encryption
   def initialize
     @character_set = ("a".."z").to_a << " "
   end
-  def encrypt(message, key = random_key, date = Date.today.strftime('%d%m%y'))
+  def encrypt(message, key, date)
     encryption = ''
     working_index = 0
     message.downcase.split('').each do |character|
