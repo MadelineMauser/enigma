@@ -13,6 +13,13 @@ describe '#encrypt' do
   it 'can encrypt a given string with a given key and date' do
     expect(@enigma.encrypt('Hello world', '02715', '040895')).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
+  it 'can encrypt a given string with a given key and default date' do
+    expect(@enigma.encrypt('Hello world', '02715')).to be_a(Hash)
+    expect(@enigma.encrypt('Hello world', '02715').count).to eq(3)
+    expect(@enigma.encrypt('Hello world', '02715')[:key]).to eq('02715')
+    expect(@enigma.encrypt('Hello world', '02715')[:encryption]).to be_a(String).and eq(!'Hello world')
+    expect(@enigma.encrypt('Hello world', '02715')[:date]).to eq(Date.today.strftime('%d%m%y'))
+  end
 end
 describe '#shifts' do
   it 'can create an array of shifts' do

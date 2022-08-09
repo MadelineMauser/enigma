@@ -1,4 +1,5 @@
 require 'pry'
+require 'date'
 class Enigma
   def initialize
     @characer_set = ("a".."z").to_a << " "
