@@ -5,7 +5,7 @@ class Enigma
     @characer_set = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key, date = Date.today.strftime('%d%m%y'))
+  def encrypt(message, key = random_key, date = Date.today.strftime('%d%m%y'))
     encryption = ''
     working_index = 0
     message.downcase.split('').each do |character|
@@ -47,5 +47,9 @@ class Enigma
     d_shift = d_key.to_i + d_offset.to_i
 
     [a_shift, b_shift, c_shift, d_shift]
+  end
+
+  def random_key
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].sample(5).join
   end
 end
