@@ -12,7 +12,7 @@ describe 'Enigma instantiation' do
 end
 describe '#encrypt' do
   it 'can encrypt a given string with a given key and date' do
-    expect(@enigma.encryption.encrypt('Hello world', '02715', '040895')).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
+    expect(@enigma.encrypt('Hello world', '02715', '040895')).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
   it 'can encrypt a given string with a given key and default date' do
     expect(@enigma.encrypt('Hello world', '02715')).to be_a(Hash)

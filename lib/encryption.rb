@@ -1,5 +1,7 @@
 class Encryption
-
+  def initialize
+    @characer_set = ("a".."z").to_a << " "
+  end
   def encrypt(message, key = random_key, date = Date.today.strftime('%d%m%y'))
     encryption = ''
     working_index = 0

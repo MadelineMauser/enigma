@@ -5,7 +5,6 @@ require './lib/encryption'
 class Enigma
   include Shiftable
   def initialize
-    @characer_set = ("a".."z").to_a << " "
     @encryption = Encryption.new
   end
 
