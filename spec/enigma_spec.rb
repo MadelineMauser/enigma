@@ -31,5 +31,9 @@ describe '#decrypt' do
   it 'can decrypt a given string with a given key and date' do
     expect(@enigma.decrypt('keder ohulw', '02715', '040895')).to eq({decryption: 'hello world', key: '02715', date: '040895'})
   end
+  it 'can decrypt a given string with a given key and default date' do
+    encrypted_string = @enigma.encrypt('Hello world', '02715')[:encryption]
+    expect(@enigma.decrypt(encrypted_string, '02715')).to eq({decryption: 'hello world', key: '02715', date: Date.today.strftime('%d%m%y')})
+  end
 end
 end
