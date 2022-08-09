@@ -17,7 +17,7 @@ class Enigma
     {encryption: encryption, key: key, date: date}
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
     decryption = ''
     working_index = 0
     message.downcase.split('').each do |character|
