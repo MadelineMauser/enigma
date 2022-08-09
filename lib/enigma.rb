@@ -5,7 +5,7 @@ class Enigma
     @characer_set = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key, date = Date.today.strftime('%d%m%y'))
     encryption = ''
     working_index = 0
     message.downcase.split('').each do |character|
