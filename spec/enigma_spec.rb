@@ -21,6 +21,14 @@ describe '#encrypt' do
     expect(@enigma.encrypt('Hello world', '02715')[:encryption]).to be_a(String)
     expect(@enigma.encrypt('Hello world', '02715')[:encryption]).not_to eq('Hello world')
   end
+  it 'can encrypt a given string with a generated key and default date' do
+    expect(@enigma.encrypt('Hello world')).to be_a(Hash)
+    expect(@enigma.encrypt('Hello world').count).to eq(3)
+    expect(@enigma.encrypt('Hello world')[:key]).to be_a(String)
+    expect(@enigma.encrypt('Hello world')[:date]).to eq(Date.today.strftime('%d%m%y'))
+    expect(@enigma.encrypt('Hello world')[:encryption]).to be_a(String)
+    expect(@enigma.encrypt('Hello world')[:encryption]).not_to eq('Hello world')
+  end
 end
 describe '#shifts' do
   it 'can create an array of shifts' do
@@ -34,6 +42,13 @@ describe '#decrypt' do
   it 'can decrypt a given string with a given key and default date' do
     encrypted_string = @enigma.encrypt('Hello world', '02715')[:encryption]
     expect(@enigma.decrypt(encrypted_string, '02715')).to eq({decryption: 'hello world', key: '02715', date: Date.today.strftime('%d%m%y')})
+  end
+end
+describe '#random_key' do
+  it 'can create a string of five random numbers' do
+    expect(@enigma.random_key).to be_a(String)
+    expect(@enigma.random_key.length).to eq(5)
+    expect(@enigma.random_key.to_i).not_to be(nil)
   end
 end
 end
