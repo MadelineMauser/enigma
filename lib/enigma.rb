@@ -11,6 +11,7 @@ class Enigma
     message.downcase.split('').each do |character|
       current_shift = shifts(key, date)[working_index % 4]
       char_index = @characer_set.find_index(character)
+      binding.pry
       encryption.concat(@characer_set[(char_index + current_shift) % 27])
       working_index += 1
     end
